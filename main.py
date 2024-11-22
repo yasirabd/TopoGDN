@@ -223,9 +223,13 @@ class Main():
             train_orig = pd.read_csv(f'./data/{dataset}/train.csv', sep=',', index_col=0)
             test_orig = pd.read_csv(f'./data/{dataset}/test.csv', sep=',', index_col=0)
 
+        elif dataset == 'egca' or dataset == 't26' or dataset == 'tgb' or dataset == 'wip':
+            pkl = False
+            train_orig = pd.read_excel(f'./data/{dataset}/train.xlsx', index_col=0)
+            test_orig = pd.read_excel(f'./data/{dataset}/test.xlsx', index_col=0)
+
         elif dataset == "smd":
-            data_set_number = ["3-4",'3-5',"3-10","3-11","1-5","1-8","2-4"]
-            data_set_number += ["1-1","1-2","1-3","1-4","1-5","1-6","1-7","1-8"]
+            data_set_number = ["1-1","1-2","1-3","1-4","1-5","1-6","1-7","1-8"]
             data_set_number += ["2-1","2-2","2-3","2-4","2-5","2-6","2-7","2-8","2-9"]
             data_set_number += ["3-1","3-2","3-3","3-4","3-5","3-6","3-7","3-8","3-9","3-10","3-11"]
 
@@ -314,6 +318,7 @@ class Main():
 
             # 归一化 train 数据
             train_scaled = scaler.fit_transform(train)
+            train = pd.DataFrame(train_scaled, columns=train.columns)
 
             # 归一化 test 数据（除了最后一列标签）
             test_scaled = scaler.transform(test.iloc[:, :-1])
