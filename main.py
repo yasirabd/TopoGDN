@@ -218,7 +218,7 @@ class Main():
         # 标记数据集是否为pkl
         pkl = True
 
-        if dataset == 'wadi' or dataset == 'swat' or dataset == 'msl':
+        if dataset == 'wadi' or dataset == 'swat' or dataset == 'msl' or dataset == 'msl-sample':
             pkl = False
             train_orig = pd.read_csv(f'./data/{dataset}/train.csv', sep=',', index_col=0)
             test_orig = pd.read_csv(f'./data/{dataset}/test.csv', sep=',', index_col=0)
